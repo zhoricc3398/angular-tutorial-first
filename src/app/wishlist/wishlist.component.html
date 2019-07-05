@@ -1,0 +1,7 @@
+<h2>Wishlist</h2>
+
+<div class="shipping-item" *ngFor="let item of items; index as id">
+    <span>{{item.name}}</span>
+    <span>{{item.price | currency}}</span>
+    <button (click)="removeFromWishlist(id)">Remove item</button>
+</div>

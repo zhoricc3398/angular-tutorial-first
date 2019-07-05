@@ -8,5 +8,7 @@
         Description: {{product.description}}
     </p>
     <button (click)="share()">Share</button>
+    <button *ngIf="!checkItem(product)" (click)="addToWishlist(product)">Add to wishlsit</button>
+    <button *ngIf="checkItem(product)" (click)="removeFromWishlist(product)">Remove from wishlsit</button>
     <app-product-alerts [product]="product" (notify)="onNotify()"></app-product-alerts>
 </div>

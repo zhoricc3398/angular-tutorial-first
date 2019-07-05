@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { products } from '../products';
+import { WishlistService } from '../wishlist.service';
 
 @Component({
   selector: 'app-product-list',
@@ -10,7 +11,7 @@ import { products } from '../products';
 export class ProductListComponent {
   products = products;
 
-  constructor() { }
+  constructor(private wishlistService: WishlistService) { }
 
   share() {
     window.alert('The product has been shared');
@@ -18,5 +19,18 @@ export class ProductListComponent {
 
   onNotify() {
     window.alert('You will be notified!');
+  }
+
+  addToWishlist(product) {
+    window.alert('Your product has been added!');
+    this.wishlistService.addToWishlist(product);
+  }
+
+  removeFromWishlist(id) {
+    return this.wishlistService.removeItem(id)
+  }
+
+  checkItem(product) {
+    return this.wishlistService.checkItem(product)
   }
 }
