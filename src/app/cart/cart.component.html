@@ -1,8 +1,13 @@
 <h3>Cart</h3>
 
-<div class="cart-item" *ngFor="let item of items">
+<p>
+    <a routerLink="/shipping">Shipping prices</a>
+</p>
+
+<div class="cart-item" *ngFor="let item of items; index as id">
     <span>{{item.name}}</span>
     <span>{{item.price | currency}}</span>
+    <button (click)="removeItem(id)">Remove item</button>
 </div>
 
 <button (click)="clearCart()">Clear cart</button>
