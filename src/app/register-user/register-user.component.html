@@ -76,6 +76,6 @@
                 </div>
             </div>
         </label>
-        <button class="button" [disabled]="disableButton" type="submit">Submit</button>
+        <button class="button" (click)="addUser(registerForm.value)" (click)="notify()" (click)="resetForm()" [disabled]="disableButton" type="submit">Submit</button>
     </div>
 </form>

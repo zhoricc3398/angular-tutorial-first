@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-register-user',
@@ -8,7 +9,8 @@ import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms'
 })
 export class RegisterUserComponent implements OnInit {
   registerForm;
-  constructor(private formBuilder: FormBuilder) {
+
+  constructor(private formBuilder: FormBuilder, private usersService: UsersService) {
     this.registerForm = formBuilder.group({
       email: ['', [Validators.email]],
       password: ['', [Validators.minLength(8), Validators.pattern(/[\w0-9]{8,}/)]],
@@ -18,8 +20,8 @@ export class RegisterUserComponent implements OnInit {
       web: ['', [Validators.pattern(/(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/)]],
       check: ['', this.checkboxCheck]
     }, {
-      validators: this.crossPassword
-    })
+        validators: this.crossPassword
+      })
   }
 
   ngOnInit() {
@@ -41,10 +43,37 @@ export class RegisterUserComponent implements OnInit {
   }
 
   get disableButton() {
-    return this.registerForm.invalid; 
+    return this.registerForm.invalid;
   }
 
   onSubmit() {
     return this.registerForm.value;
+  }
+
+  resetForm() {
+    this.registerForm.patchValue({
+      email: '',
+      password: '',
+      confpassword: '',
+      nickname: '',
+      phone: '',
+      web: ''
+    });
+  }
+
+  addUser(user) {
+    const obj = {
+      email: user.email,
+      password: user.password,
+      confpassword: user.password,
+      nickname: user.nickname,
+      phone: user.phone,
+      web: user.web
+    } 
+    this.usersService.addUser(obj);
+  }
+
+  notify() {
+    window.alert('Information was added to users list!');
   }
 }
