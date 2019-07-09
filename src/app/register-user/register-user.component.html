@@ -62,7 +62,7 @@
         <label> Website:
             <input type="url" formControlName="web" class="form-control" placeholder="website" required>
             <div *ngIf="name.web.invalid && (name.web.dirty || name.web.touched)">
-                <div *ngIf="name.web.errors.required">
+                <div *ngIf="name.web.errors.che">
                     Website is required!
                 </div>
             </div>
@@ -70,8 +70,10 @@
         <label>
             <input type="checkbox" formControlName="check" required>
             I have read the <a href="https://www.google.com/">Agreement</a>
-            <div *ngIf="name.check.errors.required">
-                Must be checked!
+            <div *ngIf="name.check.invalid && (name.check.touch || name.check.dirty)">
+                <div *ngIf="name.check.errors.required">
+                    Must be checked!
+                </div>
             </div>
         </label>
         <button class="button" [disabled]="disableButton" type="submit">Submit</button>

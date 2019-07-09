@@ -43,4 +43,8 @@ export class RegisterUserComponent implements OnInit {
   get disableButton() {
     return this.registerForm.invalid; 
   }
+
+  onSubmit() {
+    return this.registerForm.value;
+  }
 }
