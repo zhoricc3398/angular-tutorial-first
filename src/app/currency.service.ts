@@ -1,52 +1,38 @@
 import { Injectable } from '@angular/core';
-import { data } from './rates';
-import { Observable } from 'rxjs';
+import { data } from './currencies';
+import { Observable, from } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CurrencyService {
 
-  result;
+  currencies;
   Observer;
 
-  constructor() {
-    this.result = this.transformObjecttoArray(data.rates);
+  constructor(private httpClient: HttpClient) {
+    this.currencies = data;
 
     this.Observer = new Observable(this.subscribe())
-  }
-
-  transformObjecttoArray(object) {
-    const result = [];
-    const keys = Object.keys(object);
-    for (const key of keys) {
-      const value = object[key];
-      const item = {
-        currency: key,
-        value
-      };
-
-      result.push(item)
-    }
-    return result;
   }
 
   subscribe() {
     return (subscriber) => {
       let i = 0;
-      
-  
-      for (const item of this.result) {
-        setTimeout(() => {
-          subscriber.next(item);
-        }, i * 500);
-  
-        i++;
-      }
-  
-      setTimeout(() => {
-        subscriber.complete();
-      }, i * 500);
+      from(this.currencies).subscribe(currency => {
+        const url = `https://api.exchangeratesapi.io/latest?symbols=${currency}`;
+        this.httpClient
+        .get(url)
+        .subscribe(value => {
+          subscriber.next(value);
+          i++;
+
+          if (i === this.currencies.length) {
+            subscriber.complete();
+          }
+        });
+      });
     }
   }
 }
