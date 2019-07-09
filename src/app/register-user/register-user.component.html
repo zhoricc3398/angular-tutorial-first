@@ -62,7 +62,7 @@
         <label> Website:
             <input type="url" formControlName="web" class="form-control" placeholder="website" required>
             <div *ngIf="name.web.invalid && (name.web.dirty || name.web.touched)">
-                <div *ngIf="name.web.errors.che">
+                <div *ngIf="name.web.errors.required">
                     Website is required!
                 </div>
             </div>
