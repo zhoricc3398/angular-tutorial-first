@@ -10,12 +10,15 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let user of users">
+        <tr *ngFor="let user of users, index as id">
             <td>{{user.email}}</td>
             <td>{{user.password}}</td>
             <td>{{user.nickname}}</td>
             <td>{{user.phone}}</td>
             <td>{{user.web}}</td>
+            <td>
+                <button class="button fancy-button" (click)="removeUser(id)" >Remove</button>
+            </td>
         </tr>
     </tbody>
 </table>
