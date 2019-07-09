@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CurrencyComponent } from './currency/currency.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProductDetailsComponent,
     CartComponent,
     ShippingComponent,
-    WishlistComponent
+    WishlistComponent,
+    CurrencyComponent
   ],
   imports: [
     HttpClientModule,
@@ -35,7 +37,8 @@ import { ReactiveFormsModule } from '@angular/forms';
       { path: 'products/:productId', component: ProductDetailsComponent },
       { path: 'cart', component: CartComponent },
       { path: 'shipping', component: ShippingComponent },
-      { path: 'wishlist', component: WishlistComponent }
+      { path: 'wishlist', component: WishlistComponent },
+      { path: 'currency', component: CurrencyComponent }
     ]),
     ReactiveFormsModule
   ],
