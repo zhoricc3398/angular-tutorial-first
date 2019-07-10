@@ -13,7 +13,7 @@ import { ShippingComponent } from './shipping/shipping.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { WishlistComponent } from './wishlist/wishlist.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CurrencyComponent } from './currency/currency.component';
 import { CurrencyExchangeComponent } from './currency-exchange/currency-exchange.component';
 
@@ -43,7 +43,8 @@ import { CurrencyExchangeComponent } from './currency-exchange/currency-exchange
       { path: 'currency', component: CurrencyComponent },
       { path: 'currency-exchange', component: CurrencyExchangeComponent }
     ]),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
