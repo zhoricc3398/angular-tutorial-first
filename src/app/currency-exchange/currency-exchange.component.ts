@@ -26,6 +26,7 @@ export class CurrencyExchangeComponent implements OnInit {
       currency2: []
     })
     this.exchangeForm.get('currency1').valueChanges.subscribe(() => this.changeValue('base'));
+    this.exchangeForm.get('currency2').valueChanges.subscribe(() => this.changeValue('symbol'));
   }
 
   ngOnInit() {
@@ -39,13 +40,16 @@ export class CurrencyExchangeComponent implements OnInit {
       this.symbol = event.target.value;
     }
   }
-  
+
   changeValue(input) {
     if (this.base && this.symbol) {
       let url = '';
       if (input === 'base') {
         this.baseInput = this.exchangeForm.get('currency1').value;
         url = `https://api.exchangeratesapi.io/latest?base=${this.base}&symbols=${this.symbol}`;
+      } else if (input === 'symbol') {
+        this.symbolInput = this.exchangeForm.get('currency2').value;
+        url = `https://api.exchangeratesapi.io/latest?base=${this.symbol}&symbols=${this.base}`;
       }
       this.http.get(url).subscribe(value => {
         this.update(value, input);
@@ -54,8 +58,10 @@ export class CurrencyExchangeComponent implements OnInit {
   }
 
   update(value, input) {
-    if ( input === 'base' ) {
+    if (input === 'base') {
       this.symbolInput = (this.baseInput || 1) * value.rates[this.symbol];
+    } else if (input === 'symbol') {
+      this.baseInput = (this.symbolInput || 1) * value.rates[this.base];
     }
   }
 }
