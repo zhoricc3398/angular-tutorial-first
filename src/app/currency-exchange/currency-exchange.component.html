@@ -1,18 +1,22 @@
-<div class="row mt-5">
-    <div>
-        <select class="form-control">
-            <option *ngFor="let currency of currencies">{{currency}}</option>
-        </select>
+<form [formGroup]="exchangeForm">
+    <div class="row mt-5">
+        <div class="mr-1">
+            <select class="form-control" (change)="selectCurrency($event, 'base')">
+                <option>Choose currency</option>
+                <option [value]="currency" *ngFor="let currency of currencies">{{currency}}</option>
+            </select>
+        </div>
+        <div class="mr-5">
+            <input type="number" [value]="baseInput" formControlName="currency1">
+        </div>
+        <div class="mr-1">
+            <select class="form-control" (change)="selectCurrency($event, 'symbol')">
+                <option>Choose currency</option>
+                <option [value]="currency" *ngFor="let currency of currencies">{{currency}}</option>
+            </select>
+        </div>
+        <div>
+            <input type="number" [value]="symbolInput" formControlName="currency2">
+        </div>
     </div>
-    <div>
-        <input type="number">
-    </div>
-    <div>
-        <select class="form-control">
-            <option *ngFor="let currency of currencies">{{currency}}</option>
-        </select>
-    </div>
-    <div>
-        <input type="number">
-    </div>
-</div>
+</form>
