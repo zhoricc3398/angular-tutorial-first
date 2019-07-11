@@ -21,6 +21,9 @@ import { NewsComponent } from './news/news.component';
 import { ArticleComponent } from './article/article.component';
 import { ErrorComponent } from './error/error.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { AdminComponent } from './admin/admin.component';
+import { GuardComponent } from './guard/guard.component';
+import { AdminGuard } from './admin.guard';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,9 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
     NewsComponent,
     ArticleComponent,
     ErrorComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    AdminComponent,
+    GuardComponent
   ],
   imports: [
     HttpClientModule,
@@ -56,6 +61,8 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
       { path: 'dashboard/news', data: {name: 'News'}, component: NewsComponent },
       { path: 'dashboard/news/:articleId', data: {name: 'Article'}, component: ArticleComponent },
       { path: 'error', data: {name: 'Error'}, component: ErrorComponent },
+      { path: 'guard', data: {name: 'Guard'}, component: GuardComponent },
+      { path: 'admin', data: {name: 'Admin'}, component: AdminComponent, canActivate: [AdminGuard] },
       { path: '**', redirectTo: 'error' }
     ]),
     ReactiveFormsModule,
