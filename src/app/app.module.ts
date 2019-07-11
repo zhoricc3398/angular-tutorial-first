@@ -24,6 +24,8 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { AdminComponent } from './admin/admin.component';
 import { GuardComponent } from './guard/guard.component';
 import { AdminGuard } from './admin.guard';
+import { RegisterUserComponent } from './register-user/register-user.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { AdminGuard } from './admin.guard';
     ErrorComponent,
     BreadcrumbsComponent,
     AdminComponent,
-    GuardComponent
+    GuardComponent,
+    RegisterUserComponent,
+    UsersComponent
   ],
   imports: [
     HttpClientModule,
@@ -63,7 +67,14 @@ import { AdminGuard } from './admin.guard';
       { path: 'error', data: {name: 'Error'}, component: ErrorComponent },
       { path: 'guard', data: {name: 'Guard'}, component: GuardComponent },
       { path: 'admin', data: {name: 'Admin'}, component: AdminComponent, canActivate: [AdminGuard] },
-      { path: '**', redirectTo: 'error' }
+      { path: '**', redirectTo: 'error' },
+      { path: '', component: ProductListComponent },
+      { path: 'products/:productId', component: ProductDetailsComponent },
+      { path: 'cart', component: CartComponent },
+      { path: 'shipping', component: ShippingComponent },
+      { path: 'wishlist', component: WishlistComponent },
+      { path: 'register', component: RegisterUserComponent },
+      { path: 'users', component: UsersComponent }
     ]),
     ReactiveFormsModule,
     FormsModule
