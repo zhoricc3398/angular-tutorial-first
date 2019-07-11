@@ -26,15 +26,13 @@ export class LoginComponent implements OnInit {
     return this.loginForm.invalid;
   }
 
-  login(email, password) {
+  login({email, password}) {
     this.alert = '';
 
     if (this.usersService.verify(email, password)) {
       this.alert = 'You have logged in!';
       console.log('zd brat');
-      
       this.authService.allow();
-      
     } else {
       this.alert = 'Credentials are wrong!';
     }

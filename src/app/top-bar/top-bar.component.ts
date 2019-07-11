@@ -15,4 +15,8 @@ export class TopBarComponent implements OnInit {
     return this.authService.isEnabled();
   }
 
+  logout() {
+    this.authService.disallow();
+  }
+
 }
