@@ -16,6 +16,10 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CurrencyComponent } from './currency/currency.component';
 import { CurrencyExchangeComponent } from './currency-exchange/currency-exchange.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NewsComponent } from './news/news.component';
+import { ArticleComponent } from './article/article.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { CurrencyExchangeComponent } from './currency-exchange/currency-exchange
     ShippingComponent,
     WishlistComponent,
     CurrencyComponent,
-    CurrencyExchangeComponent
+    CurrencyExchangeComponent,
+    DashboardComponent,
+    NewsComponent,
+    ArticleComponent,
+    ErrorComponent
   ],
   imports: [
     HttpClientModule,
@@ -41,7 +49,12 @@ import { CurrencyExchangeComponent } from './currency-exchange/currency-exchange
       { path: 'shipping', component: ShippingComponent },
       { path: 'wishlist', component: WishlistComponent },
       { path: 'currency', component: CurrencyComponent },
-      { path: 'currency-exchange', component: CurrencyExchangeComponent }
+      { path: 'currency-exchange', component: CurrencyExchangeComponent },
+      { path: 'dashboard', component:DashboardComponent },
+      { path: 'dashboard/news', component: NewsComponent },
+      { path: 'dashboard/news/:articleId', component: ArticleComponent },
+      { path: 'error', component: ErrorComponent },
+      { path: '**', redirectTo: 'error' }
     ]),
     ReactiveFormsModule,
     FormsModule
