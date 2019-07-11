@@ -26,6 +26,8 @@ import { GuardComponent } from './guard/guard.component';
 import { AdminGuard } from './admin.guard';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { UsersComponent } from './users/users.component';
+import { LoginComponent } from './login/login.component';
+import { LoginGuard } from './login.guard';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { UsersComponent } from './users/users.component';
     AdminComponent,
     GuardComponent,
     RegisterUserComponent,
-    UsersComponent
+    UsersComponent,
+    LoginComponent
   ],
   imports: [
     HttpClientModule,
@@ -67,14 +70,11 @@ import { UsersComponent } from './users/users.component';
       { path: 'error', data: {name: 'Error'}, component: ErrorComponent },
       { path: 'guard', data: {name: 'Guard'}, component: GuardComponent },
       { path: 'admin', data: {name: 'Admin'}, component: AdminComponent, canActivate: [AdminGuard] },
+      { path: 'register', data: {name: 'Register'}, component: RegisterUserComponent },
+      { path: 'users', data: {name: 'Users'}, component: UsersComponent , canActivate: [LoginGuard]},
+      { path: 'login', data: {name: 'Login'}, component: LoginComponent },
       { path: '**', redirectTo: 'error' },
-      { path: '', component: ProductListComponent },
-      { path: 'products/:productId', component: ProductDetailsComponent },
-      { path: 'cart', component: CartComponent },
-      { path: 'shipping', component: ShippingComponent },
-      { path: 'wishlist', component: WishlistComponent },
-      { path: 'register', component: RegisterUserComponent },
-      { path: 'users', component: UsersComponent }
+      { path: '', component: ProductListComponent }
     ]),
     ReactiveFormsModule,
     FormsModule

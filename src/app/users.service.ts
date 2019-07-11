@@ -19,4 +19,8 @@ export class UsersService{
         this.users.splice(id, 1)
         return this.users
     }
+
+    verify(email, pass) {
+        return this.users.find((user) => user.email === email && user.password === pass);
+    }
 }
