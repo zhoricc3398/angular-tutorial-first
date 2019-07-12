@@ -29,6 +29,7 @@ import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './login/login.component';
 import { LoginGuard } from './login.guard';
 import { EmployeesComponent } from './employees/employees.component';
+import { EmployeeRegisterComponent } from './employee-register/employee-register.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { EmployeesComponent } from './employees/employees.component';
     RegisterUserComponent,
     UsersComponent,
     LoginComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    EmployeeRegisterComponent
   ],
   imports: [
     HttpClientModule,
@@ -76,6 +78,8 @@ import { EmployeesComponent } from './employees/employees.component';
       { path: 'users', data: {name: 'Users'}, component: UsersComponent , canActivate: [LoginGuard]},
       { path: 'login', data: {name: 'Login'}, component: LoginComponent },
       { path: 'employees', data: {name: 'Employees'}, component: EmployeesComponent },
+      { path: 'employee/register', data: {name: 'Register Employee'}, component: EmployeeRegisterComponent },
+      { path: 'employee/:id', data: {name: 'Employee'}, component: EmployeesComponent },
       { path: '**', redirectTo: 'error' },
       { path: '', component: ProductListComponent }
     ]),

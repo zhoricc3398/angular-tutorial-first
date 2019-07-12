@@ -1,0 +1,14 @@
+<h1>Register Employee</h1>
+
+<form [formGroup]="employeeForm" (ngSubmit)="addEmployee(employeeForm.value)">
+    <label> Name:
+        <input type="text" class="form-control" formControlName="name">
+    </label>
+    <label> Salary:
+        <input type="text" class="form-control" formControlName="salary">
+    </label>
+    <label> Age:
+        <input type="text" class="form-control" formControlName="age">
+    </label>
+    <button class="button" type="submit">Register New Employee</button>
+</form>

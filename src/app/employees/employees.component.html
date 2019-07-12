@@ -1,6 +1,9 @@
-<h1>Employees</h1>
+<div>
+    <h1>Employees</h1>
+    <button routerLink="/employee/register" class="btn btn-primary">Register Employee</button>
+</div>
 
-<table class="table table-bordered">
+<table class="table table-bordered table-striped">
     <thead class="thead-dark">
         <tr>
             <th>Id</th>
@@ -12,9 +15,14 @@
     <tbody>
         <tr *ngFor="let employee of employees$ | async">
             <td>{{employee.id}}</td>
-            <td>{{employee.name}}</td>
+            <td>
+                <a routerLink="/employee/{{employee.id}}">{{employee.name}}</a>
+            </td>
             <td>{{employee.salary}}</td>
             <td>{{employee.age}}</td>
+            <td *ngIf="active">
+                <button (click)="deleteEmployee(employee.id)">Delete Employee</button>
+            </td>
         </tr>
     </tbody>
 </table>
