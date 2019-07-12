@@ -28,6 +28,7 @@ import { RegisterUserComponent } from './register-user/register-user.component';
 import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './login/login.component';
 import { LoginGuard } from './login.guard';
+import { EmployeesComponent } from './employees/employees.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { LoginGuard } from './login.guard';
     GuardComponent,
     RegisterUserComponent,
     UsersComponent,
-    LoginComponent
+    LoginComponent,
+    EmployeesComponent
   ],
   imports: [
     HttpClientModule,
@@ -73,6 +75,7 @@ import { LoginGuard } from './login.guard';
       { path: 'register', data: {name: 'Register'}, component: RegisterUserComponent },
       { path: 'users', data: {name: 'Users'}, component: UsersComponent , canActivate: [LoginGuard]},
       { path: 'login', data: {name: 'Login'}, component: LoginComponent },
+      { path: 'employees', data: {name: 'Employees'}, component: EmployeesComponent },
       { path: '**', redirectTo: 'error' },
       { path: '', component: ProductListComponent }
     ]),
