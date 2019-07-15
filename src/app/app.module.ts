@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +31,7 @@ import { LoginComponent } from './login/login.component';
 import { LoginGuard } from './login.guard';
 import { EmployeesComponent } from './employees/employees.component';
 import { EmployeeRegisterComponent } from './employee-register/employee-register.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ import { EmployeeRegisterComponent } from './employee-register/employee-register
     UsersComponent,
     LoginComponent,
     EmployeesComponent,
-    EmployeeRegisterComponent
+    EmployeeRegisterComponent,
+    MenuComponent
   ],
   imports: [
     HttpClientModule,
@@ -83,6 +86,7 @@ import { EmployeeRegisterComponent } from './employee-register/employee-register
       { path: '**', redirectTo: 'error' },
       { path: '', component: ProductListComponent }
     ]),
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule
   ],
