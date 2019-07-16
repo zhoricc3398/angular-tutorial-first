@@ -1,28 +1,39 @@
 <div>
-    <h1>Employees</h1>
-    <button routerLink="/employee/register" class="btn btn-primary">Register Employee</button>
+  <h1>Employees</h1>
+  <button routerLink="/employee/register" class="btn btn-primary">
+    Register Employee
+  </button>
 </div>
 
-<table class="table table-bordered table-striped">
+<div>
+  <table class="table table-bordered table-striped">
     <thead class="thead-dark">
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Salary</th>
-            <th>Age</th>
-        </tr>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Age</th>
+      </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let employee of employees$ | async">
-            <td>{{employee.id}}</td>
-            <td>
-                <a routerLink="/employee/{{employee.id}}">{{employee.name}}</a>
-            </td>
-            <td>{{employee.salary}}</td>
-            <td>{{employee.age}}</td>
-            <td *ngIf="active">
-                <button (click)="deleteEmployee(employee.id)">Delete Employee</button>
-            </td>
-        </tr>
+      <tr *ngFor="let employee of employees$ | async" [@showItems]="">
+        <td>{{ employee.id }}</td>
+        <td>
+          <a routerLink="/employee/{{ employee.id }}">{{ employee.name }}</a>
+        </td>
+        <td>{{ employee.salary }}</td>
+        <td>{{ employee.age }}</td>
+        <td *ngIf="active">
+          <button (click)="showConfirm(employee.id)">Delete Employee</button>
+        </td>
+      </tr>
     </tbody>
-</table>
+  </table>
+  <div class="lds-ellipsis" *ngIf="isLoading"><div></div><div></div><div></div><div></div></div>
+</div>
+
+<div class="confirmation" [@confirmDelete]="confirm ? 'show' : 'hide'">
+  <h1>Are you sure you want to delete this employee?</h1>
+  <button (click)="deleteEmployee(userId)">Yes</button>
+  <button (click)="hideConfirm()">No</button>
+</div>
